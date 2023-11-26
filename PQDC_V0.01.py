@@ -41,7 +41,7 @@ def obtener_fecha():
     for fraccion in range(10):
         nombre_archivo = f"{year}_{mes}_{dia}_{hora}_{minuto}_{segundo}.{fraccion}_lab_politecnica_3a.mat"
         # Obtener la ruta completa al archivo
-        ruta_archivo = os.path.join(directorio_actual, 'Datos', nombre_archivo)
+        ruta_archivo = os.path.join(directorio_actual, 'Manual_test', nombre_archivo)
 
         # Procesar el archivo y actualizar el flag si se encuentra
         se_encontro_archivo |= procesar_archivo(ruta_archivo)
