@@ -50,7 +50,6 @@ def obtener_fecha():
     if not se_encontro_archivo:
         print(f"No se encontraron archivos para la fecha proporcionada.")
 
-
 # Llamada a la función principal
 if __name__ == "__main__":
     obtener_fecha()
