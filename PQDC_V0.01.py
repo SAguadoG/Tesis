@@ -1,4 +1,5 @@
 import os
+import time
 from Extraccion_caracteristicas.signal_functions import load_signal, plot_signal, signal_feature_extraction
 
 
@@ -28,7 +29,7 @@ def obtener_fecha():
     dia = input("Ingrese el día: ")
     hora = input("Ingrese la hora: ")
     minuto = input("Ingrese el minuto: ")
-    segundo = input("Ingrese el segundo: ")
+    # segundo = input("Ingrese el segundo: ")
 
     # Obtener el directorio actual del script
     directorio_actual = os.path.abspath(os.path.dirname(__file__))
@@ -37,18 +38,28 @@ def obtener_fecha():
     se_encontro_archivo = False
 
     # Aqui se construye el nombre del archivo
-    # la fracción al ser aleatoria, se hará un bucle de 0 a 9
-    for fraccion in range(10):
-        nombre_archivo = f"{year}_{mes}_{dia}_{hora}_{minuto}_{segundo}.{fraccion}_lab_politecnica_3a.mat"
-        # Obtener la ruta completa al archivo
-        ruta_archivo = os.path.join(directorio_actual, 'Manual_test', nombre_archivo)
+    # la fracción al ser aleatoria, se hará un bucle de 0 a 9 para barrer el segundo
+    # porque la centésima es aleatoria
+    # la siguiente linea (primer bucle) se eliminara, simplemente es para comprobar en iteracion
+    # un conjunto de segundos
+    # para hacer más rápida la comprobación, para coger archivos de 30 en 30 y no de 1 en 1.
+    for segundo in range(31):
+        print("segundo", segundo)
 
-        # Procesar el archivo y actualizar el flag si se encuentra
-        se_encontro_archivo |= procesar_archivo(ruta_archivo)
+        for fraccion in range(10):
+            nombre_archivo = f"{year}_{mes}_{dia}_{hora}_{minuto}_{segundo}.{fraccion}_lab_politecnica_3a.mat"
+            # Obtener la ruta completa al archivo
+            ruta_archivo = os.path.join(directorio_actual, 'Manual_test', nombre_archivo)
+
+            # Procesar el archivo y actualizar el flag si se encuentra
+            se_encontro_archivo |= procesar_archivo(ruta_archivo)
+
+            # Una pequeña pausa
+            time.sleep(0.05)  # Ajusta el valor según sea necesario
 
     # Mensaje si no se encontraron archivos
-    if not se_encontro_archivo:
-        print(f"No se encontraron archivos para la fecha proporcionada.")
+        if not se_encontro_archivo:
+            print(f"No se encontraron archivos para la fecha proporcionada.")
 
 
 # Llamada a la función principal
