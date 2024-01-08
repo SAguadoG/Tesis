@@ -44,8 +44,6 @@ def obtener_fecha():
     # un conjunto de segundos
     # para hacer más rápida la comprobación, para coger archivos de 30 en 30 y no de 1 en 1.
     for segundo in range(31):
-        print("segundo", segundo)
-
         for fraccion in range(10):
             nombre_archivo = f"{year}_{mes}_{dia}_{hora}_{minuto}_{segundo}.{fraccion}_lab_politecnica_3a.mat"
             # Obtener la ruta completa al archivo
