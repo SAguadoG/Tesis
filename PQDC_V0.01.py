@@ -52,8 +52,8 @@ def obtener_fecha():
             # Procesar el archivo y actualizar el flag si se encuentra
             se_encontro_archivo |= procesar_archivo(ruta_archivo)
 
-            # Una pequeña pausa
-            time.sleep(0.05)  # Ajusta el valor según sea necesario
+            # Una pequeña pausa, ajustar para que no sea ni demasiado lento ni se cree problemas al plotear
+            time.sleep(0.05)
 
     # Mensaje si no se encontraron archivos
         if not se_encontro_archivo:
