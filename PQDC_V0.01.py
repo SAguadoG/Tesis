@@ -2,6 +2,9 @@ import os
 import time
 from Extraccion_caracteristicas.signal_functions import load_signal, plot_signal, signal_feature_extraction
 
+# Este programa es el que uso para obtener las características y ver si tienen
+# perturbación o no, este programa cambiará o se creará uno distinto en cuanto tenga
+# sufientes datos para poder crear el clasificador.
 
 def procesar_archivo(ruta_archivo):
     try:
@@ -62,6 +65,8 @@ def obtener_fecha():
         if not se_encontro_archivo:
             print(f"No se encontraron archivos para la fecha proporcionada.")
 
+    #Para saber cuando acaba de buscar
+    print("Se termina de buscar")
 
 # Llamada a la función principal
 if __name__ == "__main__":
