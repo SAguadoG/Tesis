@@ -1,20 +1,22 @@
 import os
-import numpy as np
 
-# Directorio donde se encuentra el archivo .npy
-data_dir = 'data/train/flicker_signals'
-file_name = 'flck_s_1.npy'
-file_path = os.path.join(data_dir, file_name)
+# Directorio de datos
+data_dir = 'data'
 
-# Verificar si el archivo .npy está vacío o no
-try:
-    if os.path.exists(file_path):
-        data = np.load(file_path)
-        if data.size == 0:
-            print(f"El archivo {file_name} en {data_dir} está vacío.")
-        else:
-            print(f"El archivo {file_name} en {data_dir} no está vacío.")
-    else:
-        print(f"El archivo {file_name} no fue encontrado en {data_dir}.")
-except Exception as e:
-    print(f"Error al procesar el archivo {file_name}: {e}")
+# Tipos de señales
+signal_types = ['flicker_signals', 'harmonic_signals', 'interruption_signals', 'original_signals', 'sag_signals',
+                'swell_signals']
+
+# Función para contar archivos en cada carpeta
+def contar_archivos_por_carpeta(tipo_de_senal, conjunto_de_datos):
+    carpeta = os.path.join(data_dir, conjunto_de_datos, tipo_de_senal)
+    num_archivos = len([nombre for nombre in os.listdir(carpeta) if os.path.isfile(os.path.join(carpeta, nombre))])
+    return num_archivos
+
+# Imprimir número de archivos por carpeta para cada tipo de señal y conjunto de datos
+for conjunto_de_datos in ['train', 'test', 'val']:
+    print(f"Conjunto de datos: {conjunto_de_datos}")
+    for tipo_de_senal in signal_types:
+        num_archivos = contar_archivos_por_carpeta(tipo_de_senal, conjunto_de_datos)
+        print(f"Carpeta '{tipo_de_senal}': {num_archivos} archivos")
+
